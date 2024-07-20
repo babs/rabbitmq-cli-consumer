@@ -3,6 +3,7 @@ package consumer
 import (
 	"context"
 	"fmt"
+
 	"github.com/bketelsen/logr"
 	"github.com/corvus-ch/rabbitmq-cli-consumer/delivery"
 	"github.com/corvus-ch/rabbitmq-cli-consumer/processor"
@@ -10,13 +11,15 @@ import (
 )
 
 type Consumer struct {
-	Connection Connection
-	Channel    Channel
-	Queue      string
-	Tag        string
-	Processor  processor.Processor
-	Log        logr.Logger
-	canceled   bool
+	Connection       Connection
+	Channel          Channel
+	Queue            string
+	Tag              string
+	Processor        processor.Processor
+	Log              logr.Logger
+	canceled         bool
+	processedMessage int
+	MessageCount     int
 }
 
 // New creates a new consumer instance. The setup of the amqp connection and channel is expected to be done by the
@@ -52,12 +55,13 @@ func NewFromConfig(cfg Config, p processor.Processor, l logr.Logger) (*Consumer,
 	}
 
 	return &Consumer{
-		Connection: conn,
-		Channel:    ch,
-		Queue:      cfg.QueueName(),
-		Tag:        cfg.ConsumerTag(),
-		Processor:  p,
-		Log:        l,
+		Connection:   conn,
+		Channel:      ch,
+		Queue:        cfg.QueueName(),
+		Tag:          cfg.ConsumerTag(),
+		Processor:    p,
+		Log:          l,
+		MessageCount: cfg.MessageLimitCount(),
 	}, nil
 }
 
@@ -97,6 +101,13 @@ func (c *Consumer) Consume(ctx context.Context) error {
 
 func (c *Consumer) consume(msgs <-chan amqp.Delivery, done chan error) {
 	for m := range msgs {
+		if c.MessageCount != -1 {
+			if c.processedMessage >= c.MessageCount {
+				done <- nil
+				return
+			}
+			c.processedMessage += 1
+		}
 		d := delivery.New(m)
 		if c.canceled {
 			d.Nack(true)
