@@ -93,6 +93,14 @@ var flags []cli.Flag = []cli.Flag{
 		Usage: "Path under which to expose metrics.",
 		Value: "/metrics",
 	},
+	cli.StringFlag{
+		Name:  "count, n",
+		Usage: "Number of message to before exit",
+	},
+	cli.StringFlag{
+		Name:  "prefetch",
+		Usage: "Set the QoS Prefetch value",
+	},
 }
 
 var ll logr.Logger
@@ -109,11 +117,21 @@ func NewApp() *cli.App {
 	app.Authors = []cli.Author{
 		{"Richard van den Brand", "richard@vandenbrand.org"},
 		{"Christian Häusler", "haeusler.christian@mac.com"},
+		{"Damien Degois", "damien@degois.info"},
 	}
 	app.Version = fmt.Sprintf("%v, commit %v, built at %v", version, commit, date)
 	app.Flags = flags
 	app.Action = Action
 	app.ExitErrHandler = ExitErrHandler
+
+	app.UsageText = `rabbitmq-cli-consumer --verbose --url amqp://guest:guest@localhost --queue myqueue --executable '/path/to/your/app argument --flag'
+
+   Executable exit codes to message acknowledgement behavior:
+     0   Acknowledgement
+     3   Reject
+     4   Reject and re-queue
+     5   Negative acknowledgement
+     6   Negative acknowledgement and re-queue`
 
 	return app
 }
@@ -309,6 +327,19 @@ func LoadConfiguration(c *cli.Context) (*config.Config, error) {
 
 	if c.IsSet("no-declare") {
 		cfg.QueueSettings.Nodeclare = c.Bool("no-declare")
+	}
+
+	if c.IsSet("count") {
+		cfg.MessageLimit.Enabled = true
+		cfg.MessageLimit.Count = c.Int("count")
+	}
+
+	if c.IsSet("prefetch") {
+		if cfg.MessageLimit.Enabled {
+			cfg.Prefetch.Count = min(cfg.Prefetch.Count, c.Int("prefetch"))
+		} else {
+			cfg.Prefetch.Count = c.Int("prefetch")
+		}
 	}
 
 	return cfg, nil

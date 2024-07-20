@@ -26,6 +26,10 @@ type Config struct {
 		Count  int
 		Global bool
 	}
+	MessageLimit struct {
+		Enabled bool
+		Count   int
+	}
 	QueueSettings struct {
 		Routingkey           []string
 		MessageTTL           int
@@ -135,6 +139,14 @@ func (c Config) PrefetchCount() int {
 // consumer.
 func (c Config) PrefetchIsGlobal() bool {
 	return c.Prefetch.Global
+}
+
+// MessageLimitCount returns the number of messages to process or -1
+func (c Config) MessageLimitCount() int {
+	if !c.MessageLimit.Enabled {
+		return -1
+	}
+	return c.MessageLimit.Count
 }
 
 // HasMessageTTL checks if a message TTL is configured.

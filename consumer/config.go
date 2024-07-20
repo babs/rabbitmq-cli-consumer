@@ -19,6 +19,7 @@ type Config interface {
 	MustDeclareQueue() bool
 	PrefetchCount() int
 	PrefetchIsGlobal() bool
+	MessageLimitCount() int
 	Priority() int32
 	QueueName() string
 	RoutingKeys() []string
