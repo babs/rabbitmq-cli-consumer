@@ -1,39 +1,9 @@
 # RabbitMQ cli consumer
 
-[![Build Status](https://travis-ci.org/corvus-ch/rabbitmq-cli-consumer.svg?branch=master)](https://travis-ci.org/corvus-ch/rabbitmq-cli-consumer)
-[![Maintainability](https://api.codeclimate.com/v1/badges/392b42c2fe09633dfd30/maintainability)](https://codeclimate.com/github/corvus-ch/rabbitmq-cli-consumer/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/392b42c2fe09633dfd30/test_coverage)](https://codeclimate.com/github/corvus-ch/rabbitmq-cli-consumer/test_coverage)
-
-IMPORTANT: Looking for maintainer: https://github.com/corvus-ch/rabbitmq-cli-consumer/issues/81.
-
-If you are a fellow PHP developer just like me you're probably aware of the
-following fact: [PHP is meant to die][die].
-
-When using RabbitMQ with pure PHP consumers you have to deal with stability
-issues. Probably you are killing your consumers regularly. And try to solve the
-problem with supervisord. Which also means on every deploy you have to restart
-your consumers. A little bit dramatic if you ask me.
-
-This is a fork of the work done by Richard van den Brand and provides a command
-that aims to solve the above described problem for RabbitMQ workers by delegate
-the long running part to a tool written in go which is much better suited for
-this task. The PHP application then is only executed when there is an AMQP
-message to process. This is comparable to how HTTP requests usually are handled
-where the webs server waits for new incoming requests and calls your script once
-for each request.
-
-This fork came to be, when [Richard van den Brand][ricbra] did no longer had
-the time to maintain his version. The main goals of the fork are:
-
-- Following the principle of [The Twelve-Factor App][12factor] environment
-  dependent settings should be configurable by environment variables.
-- All logs, including the output of the called executable, will be available in
-  STDOUT/STDERR.
-- The AMQP message will be passed via STDIN (not as argument with its
-  limitation in size)
-- Have tests with a decent level of code coverage.
-
-NOTE: If you previously used the consumer of [Richard van den Brand][ricbra],
+> [!NOTE]
+> Original project https://github.com/corvus-ch/rabbitmq-cli-consumer/
+>
+> If you previously used the consumer of [Richard van den Brand][ricbra] or [Christian Häusler][corvus-ch],
 this version should work as a drop in replacement. Do not migrate blindly but
 do some testing before. Effort was made to remain backwards compatible, no
 guarantees are made.
@@ -45,7 +15,7 @@ binary.
 
 ## Binary
 
-Binaries can be found at: https://github.com/corvus-ch/rabbitmq-cli-consumer/releases
+Binaries can be found at: https://github.com/babs/rabbitmq-cli-consumer/releases
 
 ### Compiling
 
@@ -54,13 +24,13 @@ This section assumes you're familiar with the Go language.
 Use <code>go get</code> to get the source local:
 
 ```bash
-$ go get github.com/corvus-ch/rabbitmq-cli-consumer
+$ go get github.com/babs/rabbitmq-cli-consumer
 ```
 
 Change to the directory, e.g.:
 
 ```bash
-$ cd $GOPATH/src/github.com/corvus-ch/rabbitmq-cli-consumer
+$ cd $GOPATH/src/github.com/babs/rabbitmq-cli-consumer
 ```
 
 Get the dependencies:
@@ -423,6 +393,7 @@ This library is licenced under [MIT](LICENSE). For information about how to
 contribute to this project, see [CONTRIBUTING.md].
 
 [12factor]: https://12factor.net
-[CONTRIBUTING.md]: https://github.com/corvus-ch/rabbitmq-cli-consumer/blob/master/CONTRIBUTING.md
+[CONTRIBUTING.md]: https://github.com/babs/rabbitmq-cli-consumer/blob/master/CONTRIBUTING.md
 [die]: https://software-gunslinger.tumblr.com/post/47131406821/php-is-meant-to-die
 [ricbra]: https://github.com/ricbra
+[corvus-ch]: https://github.com/corvus-ch

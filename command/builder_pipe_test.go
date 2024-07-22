@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/corvus-ch/rabbitmq-cli-consumer/command"
+	"github.com/babs/rabbitmq-cli-consumer/command"
 	"github.com/stretchr/testify/assert"
 )
 

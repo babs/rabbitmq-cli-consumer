@@ -1,7 +1,7 @@
 package acknowledger_test
 
 import (
-	"github.com/corvus-ch/rabbitmq-cli-consumer/delivery"
+	"github.com/babs/rabbitmq-cli-consumer/delivery"
 	"github.com/stretchr/testify/mock"
 )
 

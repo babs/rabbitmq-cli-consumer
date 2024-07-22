@@ -8,10 +8,10 @@ import (
 	"time"
 
 	"github.com/bketelsen/logr"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/acknowledger"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/collector"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/command"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/delivery"
+	"github.com/babs/rabbitmq-cli-consumer/acknowledger"
+	"github.com/babs/rabbitmq-cli-consumer/collector"
+	"github.com/babs/rabbitmq-cli-consumer/command"
+	"github.com/babs/rabbitmq-cli-consumer/delivery"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
