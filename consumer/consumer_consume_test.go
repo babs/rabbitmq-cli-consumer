@@ -7,9 +7,9 @@ import (
 	"time"
 
 	log "github.com/corvus-ch/logr/buffered"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/consumer"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/delivery"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/processor"
+	"github.com/babs/rabbitmq-cli-consumer/consumer"
+	"github.com/babs/rabbitmq-cli-consumer/delivery"
+	"github.com/babs/rabbitmq-cli-consumer/processor"
 	"github.com/streadway/amqp"
 	"github.com/stretchr/testify/assert"
 )

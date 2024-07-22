@@ -12,8 +12,8 @@ import (
 
 	"github.com/bketelsen/logr"
 	log "github.com/corvus-ch/logr/buffered"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/command"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/delivery"
+	"github.com/babs/rabbitmq-cli-consumer/command"
+	"github.com/babs/rabbitmq-cli-consumer/delivery"
 	"github.com/sebdah/goldie"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

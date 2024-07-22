@@ -8,7 +8,7 @@ import (
 
 	"github.com/bketelsen/logr"
 	log "github.com/corvus-ch/logr/std"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/config"
+	"github.com/babs/rabbitmq-cli-consumer/config"
 )
 
 // NewFromConfig crates a logger according to the given config.

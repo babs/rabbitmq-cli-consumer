@@ -9,7 +9,7 @@ import (
 
 	"bou.ke/monkey"
 	"github.com/codegangsta/cli"
-	"github.com/corvus-ch/rabbitmq-cli-consumer"
+	"github.com/babs/rabbitmq-cli-consumer"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 )

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/corvus-ch/rabbitmq-cli-consumer/delivery"
+	"github.com/babs/rabbitmq-cli-consumer/delivery"
 	"github.com/magiconair/properties/assert"
 	"github.com/streadway/amqp"
 	"github.com/stretchr/testify/mock"

@@ -1,4 +1,4 @@
-module github.com/corvus-ch/rabbitmq-cli-consumer
+module github.com/babs/rabbitmq-cli-consumer
 
 go 1.22.1
 

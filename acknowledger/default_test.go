@@ -3,7 +3,7 @@ package acknowledger_test
 import (
 	"testing"
 
-	"github.com/corvus-ch/rabbitmq-cli-consumer/acknowledger"
+	"github.com/babs/rabbitmq-cli-consumer/acknowledger"
 )
 
 var defaultTests = []struct {

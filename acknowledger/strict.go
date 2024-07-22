@@ -3,7 +3,7 @@ package acknowledger
 import (
 	"fmt"
 
-	"github.com/corvus-ch/rabbitmq-cli-consumer/delivery"
+	"github.com/babs/rabbitmq-cli-consumer/delivery"
 )
 
 // Strict is an Acknowledger implementation strictly using the scripts exit code.

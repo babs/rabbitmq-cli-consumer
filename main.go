@@ -11,15 +11,15 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/babs/rabbitmq-cli-consumer/acknowledger"
+	"github.com/babs/rabbitmq-cli-consumer/collector"
+	"github.com/babs/rabbitmq-cli-consumer/command"
+	"github.com/babs/rabbitmq-cli-consumer/config"
+	"github.com/babs/rabbitmq-cli-consumer/consumer"
+	"github.com/babs/rabbitmq-cli-consumer/log"
+	"github.com/babs/rabbitmq-cli-consumer/processor"
 	"github.com/bketelsen/logr"
 	"github.com/codegangsta/cli"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/acknowledger"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/collector"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/command"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/config"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/consumer"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/log"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/processor"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -124,14 +124,17 @@ func NewApp() *cli.App {
 	app.Action = Action
 	app.ExitErrHandler = ExitErrHandler
 
-	app.UsageText = `rabbitmq-cli-consumer --verbose --url amqp://guest:guest@localhost --queue myqueue --executable '/path/to/your/app argument --flag'
+	app.UsageText = `rabbitmq-cli-consumer --verbose --url amqp://guest:guest@localhost/%2f --queue myqueue --executable '/path/to/your/app argument --flag'
 
    Executable exit codes to message acknowledgement behavior:
      0   Acknowledgement
      3   Reject
      4   Reject and re-queue
      5   Negative acknowledgement
-     6   Negative acknowledgement and re-queue`
+     6   Negative acknowledgement and re-queue
+
+   All credits should go to the initial project https://github.com/babs/rabbitmq-cli-consumer.
+   `
 
 	return app
 }

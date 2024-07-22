@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/bketelsen/logr"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/delivery"
+	"github.com/babs/rabbitmq-cli-consumer/delivery"
 )
 
 type PipeBuilder struct {

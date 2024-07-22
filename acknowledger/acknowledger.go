@@ -1,8 +1,8 @@
 package acknowledger
 
 import (
-	"github.com/corvus-ch/rabbitmq-cli-consumer/config"
-	"github.com/corvus-ch/rabbitmq-cli-consumer/delivery"
+	"github.com/babs/rabbitmq-cli-consumer/config"
+	"github.com/babs/rabbitmq-cli-consumer/delivery"
 )
 
 // Mapping of script exit codes and message acknowledgment.

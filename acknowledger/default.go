@@ -1,6 +1,6 @@
 package acknowledger
 
-import "github.com/corvus-ch/rabbitmq-cli-consumer/delivery"
+import "github.com/babs/rabbitmq-cli-consumer/delivery"
 
 // Default is an Acknowledger implementation using a configurable default behaviour for script errors.
 type Default struct {
