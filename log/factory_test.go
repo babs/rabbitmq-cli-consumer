@@ -117,8 +117,8 @@ func TestLoggers(t *testing.T) {
 			if l != nil {
 				ll := reflect.ValueOf(l).Elem().FieldByName("loggers")
 				assert.Equal(t, ll.Len(), 2)
-				assert.Equal(t, int64(test.flag), reflect.Indirect(ll.Index(0)).FieldByName("flag").Int())
-				assert.Equal(t, int64(test.flag), reflect.Indirect(ll.Index(1)).FieldByName("flag").Int())
+				assert.Equal(t, int64(test.flag), reflect.Indirect(ll.Index(0)).FieldByName("flag").FieldByName("v").Int())
+				assert.Equal(t, int64(test.flag), reflect.Indirect(ll.Index(1)).FieldByName("flag").FieldByName("v").Int())
 			}
 		})
 	}
