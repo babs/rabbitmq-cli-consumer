@@ -133,7 +133,7 @@ func NewApp() *cli.App {
      5   Negative acknowledgement
      6   Negative acknowledgement and re-queue
 
-   All credits should go to the initial project https://github.com/babs/rabbitmq-cli-consumer.
+   All credits should go to the initial project https://github.com/corvus-ch/rabbitmq-cli-consumer.
    `
 
 	return app
