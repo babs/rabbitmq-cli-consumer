@@ -11,8 +11,8 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/bketelsen/logr"
 	"github.com/babs/rabbitmq-cli-consumer/delivery"
+	"github.com/bketelsen/logr"
 )
 
 type ArgumentBuilder struct {

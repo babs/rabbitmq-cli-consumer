@@ -61,7 +61,7 @@ var flags []cli.Flag = []cli.Flag{
 	},
 	cli.BoolFlag{
 		Name:  "include, i",
-		Usage: "Include metadata. Passes message as JSON data including headers, properties and message body. This flag will be ignored when `-pipe` is used.",
+		Usage: "Include metadata. Passes message as JSON data including headers, properties and message body.",
 	},
 	cli.BoolFlag{
 		Name:  "strict-exit-code",
@@ -283,7 +283,9 @@ func ExitErrHandler(_ *cli.Context, err error) {
 // If pipe is set to true, compression and metadata are ignored.
 func CreateBuilder(pipe, compression, metadata bool) command.Builder {
 	if pipe {
-		return &command.PipeBuilder{}
+		return &command.PipeBuilder{
+			WithMetadata: metadata,
+		}
 	}
 
 	return &command.ArgumentBuilder{

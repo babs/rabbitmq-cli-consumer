@@ -9,12 +9,13 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/bketelsen/logr"
 	"github.com/babs/rabbitmq-cli-consumer/delivery"
+	"github.com/bketelsen/logr"
 )
 
 type PipeBuilder struct {
 	Builder
+	WithMetadata bool
 	log          logr.Logger
 	outputWriter io.Writer
 	errorWriter  io.Writer
@@ -52,6 +53,23 @@ func (b *PipeBuilder) SetCaptureOutput(capture bool) {
 }
 
 func (b *PipeBuilder) GetCommand(p delivery.Properties, d delivery.Info, body []byte) (*exec.Cmd, error) {
+	var err error
+	payload := body
+	if b.WithMetadata {
+		payload, err = json.Marshal(&struct {
+			Properties   delivery.Properties `json:"properties"`
+			DeliveryInfo delivery.Info       `json:"delivery_info"`
+			Body         string              `json:"body"`
+		}{
+
+			Properties:   p,
+			DeliveryInfo: d,
+			Body:         string(body),
+		})
+		if err != nil {
+			return nil, fmt.Errorf("failed to marshall payload: %v", err)
+		}
+	}
 
 	meta, err := json.Marshal(&struct {
 		Properties   delivery.Properties `json:"properties"`
@@ -73,7 +91,7 @@ func (b *PipeBuilder) GetCommand(p delivery.Properties, d delivery.Info, body []
 	cmd := exec.Command(b.cmd, b.args...)
 
 	cmd.Env = os.Environ()
-	cmd.Stdin = bytes.NewBuffer(body)
+	cmd.Stdin = bytes.NewBuffer(payload)
 	cmd.ExtraFiles = []*os.File{r}
 
 	if b.capture {
