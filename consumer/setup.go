@@ -3,7 +3,7 @@ package consumer
 import (
 	"fmt"
 	"github.com/bketelsen/logr"
-	"github.com/streadway/amqp"
+	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 // Setup configures queues, exchanges and bindings in between according to the configuration.

@@ -10,7 +10,7 @@ import (
 	"github.com/babs/rabbitmq-cli-consumer/consumer"
 	"github.com/babs/rabbitmq-cli-consumer/delivery"
 	"github.com/babs/rabbitmq-cli-consumer/processor"
-	"github.com/streadway/amqp"
+	amqp "github.com/rabbitmq/amqp091-go"
 	"github.com/stretchr/testify/assert"
 )
 

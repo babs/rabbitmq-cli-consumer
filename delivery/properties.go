@@ -3,7 +3,7 @@ package delivery
 import (
 	"time"
 
-	"github.com/streadway/amqp"
+	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 // Properties represents the properties of an AMQP message.

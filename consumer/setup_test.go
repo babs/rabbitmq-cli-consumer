@@ -7,7 +7,7 @@ import (
 	log "github.com/corvus-ch/logr/buffered"
 	"github.com/babs/rabbitmq-cli-consumer/config"
 	"github.com/babs/rabbitmq-cli-consumer/consumer"
-	"github.com/streadway/amqp"
+	amqp "github.com/rabbitmq/amqp091-go"
 	"github.com/stretchr/testify/assert"
 )
 

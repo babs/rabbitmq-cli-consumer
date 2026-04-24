@@ -7,7 +7,7 @@ import (
 	"github.com/bketelsen/logr"
 	"github.com/babs/rabbitmq-cli-consumer/delivery"
 	"github.com/babs/rabbitmq-cli-consumer/processor"
-	"github.com/streadway/amqp"
+	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 type Consumer struct {

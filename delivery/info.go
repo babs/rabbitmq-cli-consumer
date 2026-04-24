@@ -1,7 +1,7 @@
 package delivery
 
 import (
-	"github.com/streadway/amqp"
+	amqp "github.com/rabbitmq/amqp091-go"
 )
 
 // Info represents the delivery info of an amqp message.
